@@ -16,3 +16,7 @@ docker compose run --rm freqtrade backtesting --strategy ResearchStub --timerang
 ```
 
 freqtrade 原始报告在 `user_data/backtest_results/`(git 忽略);回测后把摘要与实验结论落到 `user_data/research/`。
+
+## 同类开源(不重复造轮子)
+
+完整对照见 [docs/github-similar.md](docs/github-similar.md)。一句话:继续用官方 freqtrade;观察器借现成 Telegram/看板;资金费率套利执行器不要抄(已否决)。
