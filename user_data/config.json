@@ -10,7 +10,7 @@
     "fee": 0.001,
     "trading_mode": "spot",
     "margin_mode": "",
-    "cancel_open_orders_on_exit": false,
+    "cancel_open_orders_on_exit": true,
     "entry_pricing": {
         "price_side": "other",
         "use_order_book": true,

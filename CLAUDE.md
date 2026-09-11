@@ -14,7 +14,7 @@
 1. `config.json` 中 `dry_run` 必须为 `true`。改为 `false` 需用户在当前对话明确确认
 2. 交易所 API key/secret 只允许存放于 VPS 上的 `.env` 或系统环境变量。禁止写入任何 json/py/md 文件、代码注释、聊天回复
 3. 交易所 API key 只开交易权限、禁提现权限,并绑定 VPS 出口 IP 白名单
-4. 任何新策略必须先跑 backtest(含手续费),报告落盘到 `user_data/research/` 后才能进入模拟盘
+4. 任何新策略必须先跑 backtest(含手续费),报告落盘到 `user_data/research/` 后才能进入模拟盘。freqtrade 原始报告目录 `user_data/backtest_results/` 被 git 忽略——回测后须把摘要复制/改写到 `research/`,否则本条落空
 5. 不改写 git 历史;实验性改动开新分支,不动 main
 6. 实盘阶段仓位规则:日亏 2% 熔断、账户回撤 10% 减半仓位、20% 停机——这些写进代码,不允许运行时手动豁免
 
@@ -36,6 +36,7 @@ docker compose pull                                                  # 拉镜像
 docker compose run --rm freqtrade download-data -t 15m 1h --timerange 20250101-   # 下载历史数据
 docker compose run --rm freqtrade backtesting --strategy ResearchStub --timerange 20250101-   # 回测
 docker compose up -d                                                 # 模拟盘(dry-run)
+# 注意:首次部署只跑上面的 run --rm 两步(数据+回测);直接 up -d 会让 ResearchStub 自动开跑
 # FreqUI 访问:本地执行 ssh -L 8080:127.0.0.1:8080 <vps> 后浏览 http://127.0.0.1:8080
 ```
 
